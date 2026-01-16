@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Perspikative — Créations</title>
+  <link rel="stylesheet" href="creations.css">
+</head>
+<body>
+
+<section class="creations-grid grid-3">
+
+  <article class="creation-card"
+    data-title="Éclat nocturne"
+    data-description="Illustration explorant les contrastes lumineux et la solitude urbaine."
+    data-year="2025"
+    data-tools="Procreate"
+    data-image="images/hd/eclat-nocturne.webp">
+    <img src="images/thumbs/eclat-nocturne.webp" alt="Éclat nocturne">
+  </article>
+
+  <article class="creation-card"
+    data-title="Fragment de silence"
+    data-description="Composition minimaliste autour du vide et de l’attente."
+    data-year="2024"
+    data-tools="Photoshop"
+    data-image="images/hd/fragment-silence.webp">
+    <img src="images/thumbs/fragment-silence.webp" alt="Fragment de silence">
+  </article>
+
+  <article class="creation-card"
+    data-title="Persistance"
+    data-description="Une figure figée entre rêve et matière."
+    data-year="2025"
+    data-tools="Procreate"
+    data-image="images/hd/persistance.webp">
+    <img src="images/thumbs/persistance.webp" alt="Persistance">
+  </article>
+
+  <article class="creation-card"
+    data-title="Lignes internes"
+    data-description="Étude graphique sur le mouvement et la tension."
+    data-year="2023"
+    data-tools="Illustrator"
+    data-image="images/hd/lignes-internes.webp">
+    <img src="images/thumbs/lignes-internes.webp" alt="Lignes internes">
+  </article>
+
+  <article class="creation-card"
+    data-title="État transitoire"
+    data-description="Illustration introspective, entre corps et abstraction."
+    data-year="2025"
+    data-tools="Procreate"
+    data-image="images/hd/etat-transitoire.webp">
+    <img src="images/thumbs/etat-transitoire.webp" alt="État transitoire">
+  </article>
+
+</section>
+
+<!-- LIGHTBOX UNIQUE -->
+<div class="lightbox" aria-hidden="true">
+  <div class="lightbox-overlay"></div>
+
+  <div class="lightbox-content glass">
+    <button class="lightbox-close">×</button>
+
+    <img class="lightbox-image" src="" alt="">
+
+    <div class="lightbox-infos">
+      <h2 class="lightbox-title"></h2>
+      <p class="lightbox-description"></p>
+      <p class="lightbox-meta">
+        <span class="lightbox-year"></span> ·
+        <span class="lightbox-tools"></span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+const cards = document.querySelectorAll('.creation-card');
+const lightbox = document.querySelector('.lightbox');
+
+const lbImage = document.querySelector('.lightbox-image');
+const lbTitle = document.querySelector('.lightbox-title');
+const lbDesc = document.querySelector('.lightbox-description');
+const lbYear = document.querySelector('.lightbox-year');
+const lbTools = document.querySelector('.lightbox-tools');
+
+function openLightbox(card) {
+  lbImage.src = card.dataset.image;
+  lbTitle.textContent = card.dataset.title;
+  lbDesc.textContent = card.dataset.description;
+  lbYear.textContent = card.dataset.year;
+  lbTools.textContent = card.dataset.tools;
+
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+cards.forEach(card => {
+  card.addEventListener('click', () => openLightbox(card));
+});
+
+document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+document.querySelector('.lightbox-overlay').addEventListener('click', closeLightbox);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>
